@@ -7,6 +7,10 @@ install: npm install
 branches:
   only:
   - master
+before_deploy:
+  - if [ "$TRAVIS_BRANCH" == "master" ];then
+    git checkout master;
+    fi;
 deploy:
   provider: heroku
   app: steam-jul-zas
