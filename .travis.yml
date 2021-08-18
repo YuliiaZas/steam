@@ -4,7 +4,9 @@ node_js:
 before_install:
 - npm install -g @angular/cli
 install: npm install
-branch: main
+branches:
+  only:
+  - master
 deploy:
   provider: heroku
   app: steam-jul-zas
