@@ -1,12 +1,15 @@
 {
   "name": "steam",
   "version": "0.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "ng build --aot",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
