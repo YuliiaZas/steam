@@ -10,7 +10,6 @@
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "postinstall": "ng build --aot",
-    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
