@@ -1,0 +1,48 @@
+@import '../../variables';
+
+// :host {
+//   // margin-bottom: 15px;
+//   background-color: $color-bg;
+// }
+nav {
+  background-color: white;
+  box-shadow: 0px 5px 10px $color-shadow;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  display: flex;
+  align-items: stretch;
+}
+
+li {
+  display: flex;
+  align-items: center;
+
+  &:hover:not(.active) {
+    background-color: $color-bg;
+  }
+
+  &:first-child a {
+    padding: 8px 10px 8px 20px;
+  }
+
+  &.active a {
+    color: $color-main;
+  }
+
+  a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 15px 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: $font-main;
+    background-color: transparent;
+  }
+}

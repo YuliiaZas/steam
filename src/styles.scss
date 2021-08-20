@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $color-bg;
+}
+// * {
+// }
+// :root {
+  // $color-main: #6C69FF;
+  // $color-bg: #F4F4F4;
+  // $color-shadow: #b3afaf;
+// }
