@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from '../login-page/login-page.component';
+import { AuthGuardService as AuthGuard } from '../core/auth/auth-guard.service';
+import { LoginPageComponent } from '../features/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -10,8 +11,10 @@ const routes: Routes = [
   }, {
     path: 'login',
     component: LoginPageComponent,
-  // }, {
-  //   path: 'profile',
+  }, {
+    path: 'profile',
+    loadChildren: () => import('../features/profile-page/profile-page.module').then(m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
   // }, {
   //   path: 'friends',
   // }, {

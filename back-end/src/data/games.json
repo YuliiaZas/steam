@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Warframe",
+    "price": "0",
+    "description": "Warframe is a cooperative free-to-play third person online action game set in an evolving sci-fi world.",
+    "users": [],
+    "tags": [
+      "Action",
+      "Shooter",
+      "Free to Play",
+      "RPG",
+      "MMO",
+      "Space"
+    ]
+  }, {
+    "name": "Tropico 5",
+    "price": "279",
+    "description": "Return to the remote island nation of Tropico and expand your Dynasty’s reign from the early colonial period to beyond the 21st Century, facing new challenges including advanced trading mechanics, technology and scientific research, as well as cooperative and competitive MULTIPLAYER.",
+    "users": [],
+    "tags": [
+      "Strategy",
+      "Sandbox",
+      "Simulation",
+      "City Builder",
+      "Casual",
+      "RPG",
+      "Economy"
+    ]
+  }, {
+    "name": "Ticket to Ride",
+    "price": "169",
+    "description": "CONNECT MORE THAN CITIES! Set off with your friends and family to re(discover) Ticket to Ride, the classic boardgame. In this railway adventure, you’ll need to be the quickest to link up your cities and reach your destinations.",
+    "users": [],
+    "tags": [
+      "Strategy",
+      "Board Game",
+      "Indie",
+      "Casual"
+    ]
+  }, {
+    "name": "Sid Meier's Civilization V",
+    "price": "389",
+    "description": "Create, discover, and download new player-created maps, scenarios, interfaces, and more!",
+    "users": [],
+    "tags": [
+      "Strategy",
+      "Simulation",
+      "Indie",
+      "Economy"
+    ]
+  }, {
+    "name": "Path of Exile",
+    "price": "0",
+    "description": "You are an Exile, struggling to survive on the dark continent of Wraeclast, as you fight to earn power that will allow you to exact your revenge against those who wronged you. Created by hardcore gamers, Path of Exile is an online Action RPG set in a dark fantasy world.",
+    "users": [],
+    "tags": [
+      "Action",
+      "Free to Play",
+      "RPG",
+      "MMO",
+      "Fantasy"
+    ]
+  }, {
+    "name": "The Lord of the Rings Online",
+    "price": "0",
+    "description": "Join the world’s greatest fellowship of players in the award-winning online re-creation of J. R. R. Tolkien’s legendary Middle-earth.",
+    "users": [],
+    "tags": [
+      "Action",
+      "Free to Play",
+      "RPG",
+      "MMO",
+      "Fantasy"
+    ]
+  }, {
+    "name": "The Guild II Renaissance",
+    "price": "169",
+    "description": "For centuries Europe has been dominated by the church and nobility. On the shoulders of ordinary people the servants of god and the noble families justified their power and wealth. This was the incontrovertible, divine world order. A truly dark era… ",
+    "users": [],
+    "tags": [
+      "Strategy",
+      "Sandbox",
+      "Simulation",
+      "City Builder",
+      "Economy"
+    ]
+  }, {
+    "name": "For The King",
+    "price": "279",
+    "description": "For The King is a strategic RPG that blends tabletop and roguelike elements in a challenging adventure that spans the realms. Set off on a single player experience or play cooperatively both online and locally.",
+    "users": [],
+    "tags": [
+      "Strategy",
+      "Board Game",
+      "Indie",
+      "Fantasy"
+    ]
+  }, {
+    "name": "EVE Online",
+    "price": "0",
+    "description": "EVE Online is a free-to-play community driven space MMO where players can choose their own path from countless different options. Experience space exploration, immense PvP and PvE battles, mining, industry and a thriving player economy in an ever-expanding sandbox.",
+    "users": [],
+    "tags": [
+      "Action",
+      "Strategy",
+      "Sandbox",
+      "Simulation",
+      "Free to Play",
+      "Economy",
+      "MMO",
+      "Space"
+    ]
+  }, {
+    "name": "Cities: Skylines",
+    "price": "379",
+    "description": "Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience.",
+    "users": [],
+    "tags": [
+      "Strategy",
+      "Sandbox",
+      "Simulation",
+      "City Builder",
+      "Casual",
+      "Economy"
+    ]
+  }
+]
