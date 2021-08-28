@@ -1,25 +1,29 @@
-const getAllFriendsByUserId = (userId) => {
+const {User} = require('../models/userModel');
+
+const getAllFriendsByUserId = async (_id) => {
+  const friends = await User.find({friends: _id}, {__v: 0});
+  console.log(friends)
+  return friends || [];
+};
+
+const getNewFriendsBySearchData = async (searchData, userId) => {
 
 };
 
-const getNewFriendsBySearchData = (searchData, userId) => {
+const getNewFriendById = async (newFriendId) => {
 
 };
 
-const getNewFriendById = (newFriendId) => {
-
-};
-
-const addFriendRequestToUser = (newFriendId, receivedSentCase, fromToCase, userId) => {
+const addFriendRequestToUser = async (newFriendId, receivedSentCase, fromToCase, userId) => {
 
 };
 
 // addFriendRequestToUser(userId, 'sent', 'to', newFriendId)
-const getRequestsArrayByUserId = (userId, receivedSentCase, status) => {
+const getRequestsArrayByUserId = async (userId, receivedSentCase, status) => {
 
 };
 
-const setRequestStatusToUser = (friendId, receivedSentCase, fromToCase, userId, status) => {
+const setRequestStatusToUser = async (friendId, receivedSentCase, fromToCase, userId, status) => {
 
   if (status === 'accepted | rejected') {
     removeRequestFromUser(friendId, userId);
@@ -29,15 +33,15 @@ const setRequestStatusToUser = (friendId, receivedSentCase, fromToCase, userId, 
   }
 };
 
-const removeRequestFromUser = (friendId, userId) => {
+const removeRequestFromUser = async (friendId, userId) => {
 
 };
 
-const addFriendToUser = (friendId, userId) => {
+const addFriendToUser = async (friendId, userId) => {
 
 };
 
-const deleteFriendFromUser = (friendId, userId) => {
+const deleteFriendFromUser = async (friendId, userId) => {
 
 };
 

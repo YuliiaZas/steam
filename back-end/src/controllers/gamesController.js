@@ -7,6 +7,7 @@ const {
   getLibraryGames,
   putGameToUser,
   putUserToGame,
+  getNewGamesByQuery,
 } = require('../services/gamesService');
 
 const {tryCatchWrapper} = require('../utils/apiUtils');
@@ -26,6 +27,13 @@ router.get('/my', tryCatchWrapper(async (req, res) => {
   const {userId} = req.user;
   const libraryGames = await getLibraryGames(userId);
   res.json(libraryGames);
+}));
+
+router.get('/search', tryCatchWrapper(async (req, res) => {
+  const [type, value] = Object.entries(req.query)[0];
+  const {userId} = req.user;
+  const games = await getNewGamesByQuery(type, value, userId);
+  res.json(games);
 }));
 
 router.get('/:gameId', tryCatchWrapper(async (req, res) => {

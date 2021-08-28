@@ -11,11 +11,30 @@ const getNewGames = async (_id) => {
 
 const getGameById = async (_id) => {
   const game = await Game.findOne({_id});
-  console.log(game)
   if (!game) {
     throw new InvalidRequestError(`Game with id ${_id} is absent`);
   }
   return game;
+};
+
+const getNewGamesByQuery = async (queryType, queryValue, userId) => {
+  if (queryValue === '') {
+    return getNewGames(userId);
+  }
+  let searchParam;
+  if (queryType === 'name') {
+    console.log('name')
+    searchParam = {name: {$regex: `${queryValue}`, $options: 'i'}};
+  } else {
+    console.log('else')
+    searchParam = {[queryType]: queryValue};
+  }
+  console.log(searchParam)
+  const games = await Game.find({...searchParam, users: {$ne: {_id: userId}}});
+  // if (!games) {
+  //   throw new InvalidRequestError(`Game with id ${_id} is absent`);
+  // }
+  return games || [];
 }
 
 const getLibraryGames = async (_id) => {
@@ -49,6 +68,7 @@ const putUserToGame = async (gameId, userId) => {
 module.exports = {
   getNewGames,
   getGameById,
+  getNewGamesByQuery,
   getLibraryGames,
   putGameToUser,
   putUserToGame,

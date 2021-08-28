@@ -1,0 +1,23 @@
+<h1>Friends</h1>
+<app-search
+  title="Friends"
+  (search)="searchFriends($event)">
+</app-search>
+
+<h2 *ngIf="!searchIsActive">My Friends</h2>
+<app-friends-list
+  *ngIf="!searchIsActive"
+  [friends]="friends"
+  [abilityToAdd]="false"
+  [abilityToRemove]="true"
+  (sendIdToRemoveCardsList)="removeFriend($event)">
+</app-friends-list>
+
+<h2 *ngIf="searchIsActive">Search Friends</h2>
+<app-friends-list
+  *ngIf="searchIsActive"
+  [friends]="friends"
+  [abilityToAdd]="true"
+  [abilityToRemove]="false"
+  (sendIdToAddRemoveCardsList)="addFriend($event)">
+</app-friends-list>

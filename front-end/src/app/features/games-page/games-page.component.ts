@@ -26,8 +26,13 @@ export class GamesPageComponent implements OnInit {
     this.gamesService.addToLibraryRequest$(data.id)
       .subscribe(result => {
         this.gamesService.getNewGames$()
-          .subscribe((newGames: GameI[]) => this.games = newGames)
+          .subscribe((newGames: GameI[]) => this.games = newGames);
       });
   }
 
+  public searchGameByName(value: string) {
+    console.log(value);
+    this.gamesService.searchGameByNameRequest$(value)
+      .subscribe((result: GameI[]) => this.games = result);
+  }
 }

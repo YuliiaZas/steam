@@ -6,6 +6,7 @@ import { LoginPageComponent } from '../features/login-page/login-page.component'
 import { UserResolver } from '../core/guards/user-resolver';
 import { GamesResolver } from '../core/guards/games-resolver';
 import { LibraryResolver } from '../core/guards/library-resolver';
+import { FriendsResolver } from '../core/guards/friends-resolver';
 
 const routes: Routes = [
   {
@@ -24,8 +25,14 @@ const routes: Routes = [
       user: UserResolver,
     }
   }, {
-  //   path: 'friends',
-  // }, {
+    path: 'friends',
+    loadChildren: () => import('../features/friends-page/friends-page.module')
+      .then(m => m.FriendsPageModule),
+    canActivate: [AuthGuard],
+    resolve: {
+      friends: FriendsResolver,
+    }
+  }, {
     path: 'games',
     loadChildren: () => import('../features/games-page/games-page.module')
       .then(m => m.GamesPageModule),

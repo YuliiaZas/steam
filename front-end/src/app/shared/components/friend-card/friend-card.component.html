@@ -1,0 +1,23 @@
+<p>friend-card works!</p>
+<div>
+  <p>
+    {{friend.username || friend.email}}
+  </p>
+  <!-- <p *ngIf="!friend.username">
+    {{friend.email}}
+  </p> -->
+  <div>
+    <button 
+      *ngIf="abilityToAdd" 
+      type="button" 
+      (click)="clickAdd(friend._id)">
+      Add Friend
+    </button>
+    <button 
+      *ngIf="abilityToRemove" 
+      type="button" 
+      (click)="clickRemove(friend._id)">
+      Remove Friend
+    </button>
+  </div>
+</div>

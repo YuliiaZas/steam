@@ -13,6 +13,10 @@ export class UserService {
   ) { }
 
   public getUser$(): Observable<UserI> {
-    return this.http.get('api/profile');
+    return this.http.get<UserI>('api/profile');
+  }
+
+  public getFriends$(): Observable<UserI[]> {
+    return this.http.get<UserI[]>('api/friends')
   }
 }

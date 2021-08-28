@@ -8,7 +8,6 @@ export class AuthService {
   constructor(public jwtHelper: JwtHelperService) { }
 
   static tokenGetter(): string | null {
-    console.log('tokenGetter', localStorage.getItem('token'))
     return localStorage.getItem('token');
   }
 
