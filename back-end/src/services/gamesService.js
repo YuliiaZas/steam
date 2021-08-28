@@ -1,22 +1,55 @@
-const getAllGames = () => {
+const {Game} = require('../models/gameModel');
+const {User} = require('../models/userModel');
 
+const getNewGames = async (_id) => {
+  const newGames = await Game.find({users: {$ne: _id}}, {__v: 0});
+  if (!newGames) {
+    throw new InvalidRequestError('It seems that you have all our games! Or something went wrong...');
+  }
+  return newGames;
 };
 
-const getAllGamesByUserId = (userId) => {
+const getGameById = async (_id) => {
+  const game = await Game.findOne({_id});
+  console.log(game)
+  if (!game) {
+    throw new InvalidRequestError(`Game with id ${_id} is absent`);
+  }
+  return game;
+}
 
+const getLibraryGames = async (_id) => {
+  const libraryGames = await Game.find({users: _id}, {__v: 0});
+  console.log(libraryGames.map(g=>g.name))
+  return libraryGames || [];
 };
 
-const putGameToUser = (gameId, userId) => {
-
+const putGameToUser = async (gameId, userId) => {
+  User.findOneAndUpdate({_id: userId}, 
+    {$push: {games: gameId}}, {new: true},
+    (err, doc) => {
+      console.log('_DOC_', doc)
+      if (err) {
+        throw new InvalidRequestError(`Invalid request: ${err}`);
+      }
+    });
 };
 
-const putUserToGame = (gameId, userId) => {
-
+const putUserToGame = async (gameId, userId) => {
+  Game.findOneAndUpdate({_id: gameId}, 
+    {$push: {users: userId}}, {new: true},
+    (err, doc) => {
+      console.log('_DOC_', doc)
+      if (err) {
+        throw new InvalidRequestError(`Invalid request: ${err}`);
+      }
+    });
 };
 
 module.exports = {
-  getAllGames,
-  getAllGamesByUserId,
+  getNewGames,
+  getGameById,
+  getLibraryGames,
   putGameToUser,
   putUserToGame,
 };

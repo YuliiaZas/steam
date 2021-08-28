@@ -1,35 +1,22 @@
 import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ProfilePageComponent } from './profile-page.component';
 
-
-
-// @NgModule({
-//   declarations: [
-//     ProfilePageComponent
-//   ],
-//   imports: [
-//     CommonModule
-//   ]
-// })
-
-
-import { Routes, RouterModule } from '@angular/router';
-
-
-
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: ProfilePageComponent
-//   }
-// ];
-
 @NgModule({
-  imports: [RouterModule.forChild([{
-    path: '',
-    component: ProfilePageComponent
-  }])],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([{
+      path: '',
+      component: ProfilePageComponent
+    }])
+  ],
+  declarations: [
+    ProfilePageComponent
+  ],
   exports: [RouterModule]
 })
 export class ProfilePageModule { }

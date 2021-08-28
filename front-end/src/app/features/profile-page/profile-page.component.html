@@ -1,1 +1,45 @@
-<p>profile-page works!</p>
+<form 
+  *ngIf="profileUserForm" 
+  [formGroup]="profileUserForm" 
+  class="form" 
+  (submit)="saveChanges()">
+    <h1 class="form__title">Profile</h1>
+    <label for="username" class="form__label">Username</label>
+    <input 
+      type="text" 
+      id="username" 
+      placeholder="Username" 
+      formControlName="username" 
+      class="form__input" 
+      (focus)="isUpdated = false">
+    <label for="email" class="form__label">Email</label>
+    <input 
+      type="text" 
+      id="email" 
+      placeholder="Email" 
+      formControlName="email" 
+      class="form__input" 
+      (focus)="isUpdated = false">
+    <label for="age" class="form__label">Age</label>
+    <input 
+      type="text" 
+      id="age" 
+      placeholder="Age" 
+      formControlName="age" 
+      class="form__input" 
+      (focus)="isUpdated = false">
+    <button 
+      *ngIf="!isUpdated" 
+      type="submit" 
+      [disabled]="!profileUserForm.valid" 
+      class="button form__button">
+      Save
+    </button>
+    <button 
+      *ngIf="isUpdated" 
+      type="button" 
+      disabled 
+      class="button form__button form__button--disabled">
+      Updated
+    </button>
+</form>

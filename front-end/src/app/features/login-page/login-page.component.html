@@ -1,8 +1,8 @@
-<form *ngIf="loginUserForm" [formGroup]="loginUserForm" (submit)="submit()">
-  <h1>Sign In</h1>
-  <label for="email">Email</label><br>
-  <input type="text" id="email" placeholder="Email" formControlName="email"><br>
-  <label for="password">Password</label><br>
-  <input type="password" id="password" placeholder="Password" formControlName="password"><br>
-  <button type="submit" [disabled]="!loginUserForm.valid">Sign In</button>
+<form *ngIf="loginUserForm" [formGroup]="loginUserForm" (submit)="submit()" class="form">
+  <h1 class="form__title">Sign In</h1>
+  <label for="email" class="form__label">Email</label>
+  <input type="text" id="email" placeholder="Email" formControlName="email" class="form__input">
+  <label for="password" class="form__label">Password</label>
+  <input type="password" id="password" placeholder="Password" formControlName="password" class="form__input">
+  <button type="submit" [disabled]="!loginUserForm.valid" class="button form__button">Sign In</button>
 </form>

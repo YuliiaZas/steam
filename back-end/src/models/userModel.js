@@ -17,12 +17,17 @@ const User = mongoose.model('User', {
   age: {
     type: Number,
   },
+  games: [
+    {
+      type: mongoose.Schema.Types.ObjectId
+    }
+  ],
   friends: [
     {
       type: mongoose.Schema.Types.ObjectId
     }
   ],
-  friends_requests: {
+  friendsRequests: {
     received: [
       {
         from: {
@@ -32,7 +37,7 @@ const User = mongoose.model('User', {
         status: {
           enum: ['pending', 'accepted', 'rejected'],
         },
-        created_date: {
+        createdDate: {
           type: Date,
           default: Date.now(),
         },
@@ -47,7 +52,7 @@ const User = mongoose.model('User', {
         status: {
           enum: ['pending', 'accepted', 'rejected'],
         },
-        created_date: {
+        createdDate: {
           type: Date,
           default: Date.now(),
         },

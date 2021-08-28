@@ -1,0 +1,66 @@
+@import 'variables';
+
+:host {
+  font-family: $font-main;
+  box-shadow: $shadow;
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.card__main-part {
+  height: 150px;
+  position: relative;
+  background-color: $color-second;
+  padding: 8px;
+}
+
+.card__title,
+.card__price {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  color: white;
+  margin: 0;
+}
+
+.card__price {
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  width: calc(100% - 16px);
+}
+
+.card__additional-part {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.card__content {
+  height: 90px;
+  box-sizing: content-box;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  overflow-y: auto;
+  margin: 0;
+  text-align: justify;
+}
+
+.card__buttons-container {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.card__button {
+  flex: 1 1 50%;
+  background: $color-main;
+  color: #FFFFFF;
+  border: none;
+}
+
+.card__button--additional {
+  background: #FFFFFF;
+  color: $color-main;
+}

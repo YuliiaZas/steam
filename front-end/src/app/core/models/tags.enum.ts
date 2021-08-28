@@ -1,0 +1,17 @@
+export enum TagsEnum {
+  action = 'Action',
+  shooter = 'Shooter',
+  strategy = 'Strategy',
+  sandbox = 'Sandbox',
+  simulation = 'Simulation',
+  cityBuilder = 'City Builder',
+  boardGame = 'Board Game',
+  indie = 'Indie',
+  casual = 'Casual',
+  freeToPlay = 'Free to Play',
+  rpg = 'RPG',
+  economy = 'Economy',
+  mmo = 'MMO',
+  space = 'Space',
+  fantasy = 'Fantasy',
+}

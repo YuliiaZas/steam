@@ -1,0 +1,8 @@
+<app-game-card 
+  *ngFor="let game of games"
+  [game]="game"
+  [cardButtonMain]="cardButtonMain"
+  [cardButtonAdditional]="cardButtonAdditional"
+  (sendIdFromCard)="getDataFromCard($event)"
+  class="games-card-grid">
+</app-game-card>

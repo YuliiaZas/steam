@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthGuardService as AuthGuard } from '../core/auth/auth-guard.service';
 import { LoginPageComponent } from '../features/login-page/login-page.component';
+import { UserResolver } from '../core/guards/user-resolver';
+import { GamesResolver } from '../core/guards/games-resolver';
+import { LibraryResolver } from '../core/guards/library-resolver';
 
 const routes: Routes = [
   {
@@ -13,15 +17,31 @@ const routes: Routes = [
     component: LoginPageComponent,
   }, {
     path: 'profile',
-    loadChildren: () => import('../features/profile-page/profile-page.module').then(m => m.ProfilePageModule),
-    canActivate: [AuthGuard]
-  // }, {
+    loadChildren: () => import('../features/profile-page/profile-page.module')
+      .then(m => m.ProfilePageModule),
+    canActivate: [AuthGuard],
+    resolve: {
+      user: UserResolver,
+    }
+  }, {
   //   path: 'friends',
   // }, {
-  //   path: 'games',
-
-  // }, {
-  //   path: 'library',
+    path: 'games',
+    loadChildren: () => import('../features/games-page/games-page.module')
+      .then(m => m.GamesPageModule),
+    canActivate: [AuthGuard],
+    resolve: {
+      games: GamesResolver,
+      user: UserResolver,
+    }
+  }, {
+    path: 'library',
+    loadChildren: () => import('../features/library-page/library-page.module')
+      .then(m => m.LibraryPageModule),
+    canActivate: [AuthGuard],
+    resolve: {
+      userGames: LibraryResolver,
+    }
   // }, {
   //   path: '**',
   //   // component: NotFoundPageComponent,
@@ -29,7 +49,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    CommonModule,
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

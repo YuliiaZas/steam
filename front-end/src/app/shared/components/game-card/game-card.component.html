@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card__main-part">
+    <h3 class="card__title">{{game.name}}</h3>
+    <p class="card__price" *ngIf="game.price">{{game.price}} UAH</p>
+  </div>
+  <div class="card__additional-part">
+    <p class="card__content">{{game.description}}</p>
+    <div class="card__buttons-container">
+      <button 
+        type="button" 
+        class="button card__button card__button--main"
+        (click)="clickButton(game._id, 'cardButtonMain')">
+        {{cardButtonMain}}
+      </button>
+      <button 
+        type="button" 
+        class="button card__button card__button--additional"
+        *ngIf="cardButtonAdditional"
+        (click)="clickButton(game._id, 'cardButtonAdditional')">
+        {{cardButtonAdditional}}
+      </button>
+    </div>
+  </div>
+</div>

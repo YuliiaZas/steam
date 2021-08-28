@@ -1,0 +1,11 @@
+<h1>My Games</h1>
+<app-games-list
+  [games]="userGames"
+  cardButtonMain="Download"
+  cardButtonAdditional="Share"
+  (sendDataFromCardsList)="processAction($event)">
+</app-games-list>
+
+<div [formGroup]="copyGroup" class="display-none">
+  <input id="copy" formControlName="copy">
+</div>

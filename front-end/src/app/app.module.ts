@@ -10,31 +10,28 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { LoginPageComponent } from './features/login-page/login-page.component';
 import { HeaderComponent } from './core/header/header.component';
 import { AuthService } from './core/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
-// export function tokenGetter() {
-//   console.log('tokenGetter', localStorage.getItem('token'))
-//   return localStorage.getItem('token');
-// }
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthService.tokenGetter,
-        // allowedDomains: ['localhost:58721']
-      }
+        allowedDomains: ['localhost:4201'],
+      },
     }),
-    FormsModule,
-    // ProfilePageModule
   ],
   providers: [],
   bootstrap: [AppComponent],

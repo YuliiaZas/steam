@@ -1,6 +1,6 @@
 require('dotenv').config();
-const PORT = process.env.PORT;
-const DB_PATH = process.env.DB_PATH;
+// const PORT = process.env.PORT;
+// const DB_PATH = process.env.DB_PATH;
 
 const path = require('path');
 const express = require('express');
@@ -66,7 +66,8 @@ app.use((req, res, next) => {
 
     usersArray.forEach(usersRegistration);
 
-    app.listen(process.env.PORT || 8080);
+    app.listen(process.env.PORT || 8081);
+    console.error(`Server startup: ${process.env.PORT || 8081}`);
   } catch (err) {
     console.error(`Error with server startup: ${err.message}`);
   }

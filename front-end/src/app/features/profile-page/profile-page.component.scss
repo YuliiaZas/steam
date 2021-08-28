@@ -1,0 +1,15 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  font-family: $font-main;
+}
+
+.form__input {
+  &.ng-invalid {
+    border-color: red;;
+  }
+}

@@ -2,14 +2,12 @@ const express = require('express');
 const router = new express.Router();
 
 const {
-  getAllFriendsByUserId,
-  getNewFriendsBySearchData,
-  getNewFriendById,
-  addFriendRequestToUser,
-  getRequestsArrayByUserId,
-  setRequestStatusToUser,
-  deleteFriendFromUser,
-} = require('../services/friendsService');
+  getNewGames,
+  getGameById,
+  getLibraryGames,
+  putGameToUser,
+  putUserToGame,
+} = require('../services/gamesService');
 
 const {tryCatchWrapper} = require('../utils/apiUtils');
 
@@ -19,17 +17,21 @@ const {
 } = require('../utils/errors');
 
 router.get('/', tryCatchWrapper(async (req, res) => {
-  const allGames = await getAllGames();
-  res.json(allGames);
+  const {userId} = req.user;
+  const newGames = await getNewGames(userId);
+  res.json(newGames);
 }));
 
 router.get('/my', tryCatchWrapper(async (req, res) => {
   const {userId} = req.user;
-  const allGames = await getAllGamesByUserId(userId);
-  if (!allGames) {
-    throw new InvalidRequestError(`Invalid request`);
-  }
-  res.json(allGames);
+  const libraryGames = await getLibraryGames(userId);
+  res.json(libraryGames);
+}));
+
+router.get('/:gameId', tryCatchWrapper(async (req, res) => {
+  const gameId = req.params.gameId;
+  const game = await getGameById(gameId);
+  res.json(game);
 }));
 
 router.patch('/:gameId', tryCatchWrapper(async (req, res) => {
@@ -41,7 +43,7 @@ router.patch('/:gameId', tryCatchWrapper(async (req, res) => {
   } catch (error) {
     throw new DataError(`Game ${gameId} wasn't added to user ${userId} library. Error: ${error}`);
   }
-  res.json({'request': `Game ${gameId} wasn added to user ${userId} library`});
+  res.json({message: `Game ${gameId} wasn added to user ${userId} library`});
 }));
 
 module.exports = {

@@ -19,9 +19,10 @@ router.get('/', tryCatchWrapper(async (req, res) => {
 }));
 
 
-router.put('/', tryCatchWrapper(async (req, res) => {
+router.patch('/', tryCatchWrapper(async (req, res) => {
   const {userId} = req.user;
   const userInfo = req.body;
+  console.log(userId, userInfo)
   try {
     await updateUserById(userInfo, userId);
   } catch (error) {
