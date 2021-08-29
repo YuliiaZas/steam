@@ -13,7 +13,6 @@ const updateUserById = async (userInfo, _id) => {
   const updatedUser = await User.findOneAndUpdate({_id},
     {$set: userInfo}, {new: true},
     (err, doc) => {
-      console.log('_DOC_', doc)
       if (err) {
         throw new InvalidRequestError(`Invalid request: ${err}`);
       }

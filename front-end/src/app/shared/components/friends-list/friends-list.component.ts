@@ -14,6 +14,19 @@ export class FriendsListComponent {
   @Input()
   public abilityToRemove!: boolean;
 
+  // @Output()
+  // sendIdToAddFromCardsList = new EventEmitter<string> ();
+  
+  // @Output()
+  // sendIdToRemoveFromCardsList = new EventEmitter<string> ();
+  
+  // getIdToAddFromCard(id: string) {
+  //   this.getIdToAddFromCard.emit(id);
+  // }
+
+  // sendIdToRemoveFromCard(id: string) {
+  //   this.getIdToRemoveFromCard.emit(id);
+  // }
   @Output()
   sendIdToAddFromCardsList = new EventEmitter<string> ();
   
@@ -25,6 +38,7 @@ export class FriendsListComponent {
   }
 
   getIdToRemoveFromCard(id: string) {
+    console.log('getIdToRemoveFromCard', id, typeof id)
     this.sendIdToRemoveFromCardsList.emit(id);
   }
 }

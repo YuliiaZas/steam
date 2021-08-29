@@ -10,40 +10,51 @@ import { UserService } from 'src/app/core/services/user.service';
 export class FriendsPageComponent implements OnInit {
   public friends!: UserI[];
   public searchIsActive = false;
+  private initialFriends!: UserI[];
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
+    private readonly userService: UserService,
   ) { }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.data);
-    console.log(this.activatedRoute.snapshot.data.friends)
     this.friends = this.activatedRoute.snapshot.data.friends;
-    console.log("🚀 ~ file: friends-page.component.ts ~ line 22 ~ FriendsPageComponent ~ ngOnInit ~ this.friends", this.friends)
+    this.initialFriends = this.activatedRoute.snapshot.data.friends;
   }
 
-  public removeFriend(id: any) {
-    
+  public removeFriend(id: string) {
+    this.userService.removeFriend$(id)
+      .subscribe(result => {
+        this.userService.getFriends$()
+          .subscribe((newFriends: UserI[]) => {
+            this.friends = newFriends;
+            this.initialFriends = newFriends;
+            this.stopSearching();
+          });
+      });
   }
 
-  public addFriend(id: any) {
-
+  public addFriend(id: string) {
+    this.userService.addFriend$(id)
+      .subscribe(result => {
+        this.userService.getFriends$()
+          .subscribe((newFriends: UserI[]) => {
+            this.friends = newFriends;
+            this.initialFriends = newFriends;
+            this.stopSearching();
+          });
+      });
   }
-  public searchFriends(value: string) {
 
+  public searchNewFriends(value: string) {
+    this.searchIsActive = true;
+    this.userService.searchUsersByNameOrEmailRequest$(value)
+      .subscribe((result: UserI[]) => this.friends = result);
   }
-  // public addToLibrary(data: {[key in 'id' | 'button']: string}) {
-  //   this.gamesService.addToLibraryRequest$(data.id)
-  //     .subscribe(result => {
-  //       this.gamesService.getNewGames$()
-  //         .subscribe((newGames: GameI[]) => this.games = newGames);
-  //     });
-  // }
 
-  // public searchGameByName(value: string) {
-  //   console.log(value);
-  //   this.gamesService.searchGameByNameRequest$(value)
-  //     .subscribe((result: GameI[]) => this.games = result);
-  // }
+  public stopSearching() {
+    this.searchIsActive = false;
+    this.friends = this.initialFriends;
+  }
 
 }

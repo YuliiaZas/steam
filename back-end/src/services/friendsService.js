@@ -6,8 +6,15 @@ const getAllFriendsByUserId = async (_id) => {
   return friends || [];
 };
 
-const getNewFriendsBySearchData = async (searchData, userId) => {
-
+const searchUsersByNameOrEmail = async (value, userId) => {
+  const users = await User.find({
+    $or: [
+      {username: {$regex: `${value}`, $options: 'i'}},
+      {email: {$regex: `${value}`, $options: 'i'}}
+    ],
+    friends: {$ne: {_id: userId}}
+  });
+  return users || [];
 };
 
 const getNewFriendById = async (newFriendId) => {
@@ -37,23 +44,35 @@ const removeRequestFromUser = async (friendId, userId) => {
 
 };
 
-const addFriendToUser = async (friendId, userId) => {
-
-};
-
 const deleteFriendFromUser = async (friendId, userId) => {
-
+  User.findOneAndUpdate({_id: userId, friends: friendId}, 
+    {$pull: {friends: friendId}}, {new: true},
+    (err, doc) => {
+      if (err) {
+        throw new InvalidRequestError(`Invalid request: ${err}`);
+      }
+    });
 };
+
+const addFriendToUser = async (friendId, userId) => {
+  User.findOneAndUpdate({_id: userId, friends: {$ne: friendId}}, 
+    {$push: {friends: friendId}}, {new: true},
+    (err, doc) => {
+      if (err) {
+        throw new InvalidRequestError(`Invalid request: ${err}`);
+      }
+    });
+}
 
 // setRequestStatusToUser(userId, 'sent', 'to', friendId, status)
 module.exports = {
   getAllFriendsByUserId,
-  getNewFriendsBySearchData,
+  searchUsersByNameOrEmail,
   getNewFriendById,
   addFriendRequestToUser,
   getRequestsArrayByUserId,
   setRequestStatusToUser,
   removeRequestFromUser,
-  addFriendToUser,
   deleteFriendFromUser,
+  addFriendToUser,
 };

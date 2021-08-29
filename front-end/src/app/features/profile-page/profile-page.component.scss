@@ -3,7 +3,7 @@
 :host {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 165px);
   align-items: center;
   font-family: $font-main;
 }

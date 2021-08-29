@@ -21,6 +21,9 @@ export class SearchComponent implements OnInit {
 
   @Output()
   search = new EventEmitter<string> ();
+
+  @Output()
+  stopSearching = new EventEmitter<void> ();
   
   onSubmit() {
     this.searchIsEmpty = false;
@@ -29,7 +32,7 @@ export class SearchComponent implements OnInit {
 
   cancel() {
     this.searchForm.setValue({search: ''});
-    this.search.emit(this.searchForm.value.search);
+    this.stopSearching.emit();
     this.searchIsEmpty = true;
   }
 }

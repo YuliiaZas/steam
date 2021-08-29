@@ -1,7 +1,8 @@
 <h1>Friends</h1>
 <app-search
   title="Friends"
-  (search)="searchFriends($event)">
+  (search)="searchNewFriends($event)"
+  (stopSearching)="stopSearching()">
 </app-search>
 
 <h2 *ngIf="!searchIsActive">My Friends</h2>
@@ -10,7 +11,7 @@
   [friends]="friends"
   [abilityToAdd]="false"
   [abilityToRemove]="true"
-  (sendIdToRemoveCardsList)="removeFriend($event)">
+  (sendIdToRemoveFromCardsList)="removeFriend($event)">
 </app-friends-list>
 
 <h2 *ngIf="searchIsActive">Search Friends</h2>
@@ -19,5 +20,5 @@
   [friends]="friends"
   [abilityToAdd]="true"
   [abilityToRemove]="false"
-  (sendIdToAddRemoveCardsList)="addFriend($event)">
+  (sendIdToAddFromCardsList)="addFriend($event)">
 </app-friends-list>

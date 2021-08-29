@@ -38,7 +38,6 @@ const Game = mongoose.model('Game', {
         'Space',
         'Fantasy',
       ],
-      // required: true,
     }
   ],
 });

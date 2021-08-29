@@ -32,7 +32,6 @@ const User = mongoose.model('User', {
       {
         from: {
           type: mongoose.Schema.Types.ObjectId,
-          // required: true,
         },
         status: {
           enum: ['pending', 'accepted', 'rejected'],
@@ -47,7 +46,6 @@ const User = mongoose.model('User', {
       {
         to: {
           type: mongoose.Schema.Types.ObjectId,
-          // required: true,
         },
         status: {
           enum: ['pending', 'accepted', 'rejected'],

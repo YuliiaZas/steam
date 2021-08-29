@@ -3,12 +3,13 @@ const router = new express.Router();
 
 const {
   getAllFriendsByUserId,
-  getNewFriendsBySearchData,
+  searchUsersByNameOrEmail,
   getNewFriendById,
   addFriendRequestToUser,
   getRequestsArrayByUserId,
   setRequestStatusToUser,
   deleteFriendFromUser,
+  addFriendToUser,
 } = require('../services/friendsService');
 
 const {tryCatchWrapper} = require('../utils/apiUtils');
@@ -27,7 +28,7 @@ router.get('/', tryCatchWrapper(async (req, res) => {
   res.json(friendsInfo);
 }));
 
-router.delete('/:id', tryCatchWrapper(async (req, res) => {
+router.patch('/:id', tryCatchWrapper(async (req, res) => {
     const {userId} = req.user;
     const friendId = req.params.id;
     await deleteFriendFromUser(friendId, userId);
@@ -35,15 +36,35 @@ router.delete('/:id', tryCatchWrapper(async (req, res) => {
   }),
 );
 
-router.get('/search/:searchData', tryCatchWrapper(async (req, res) => {
+router.get('/search', tryCatchWrapper(async (req, res) => {
   const {userId} = req.user;
-  const searchData = req.params.searchData;
-  // const {searchData} = req.body;
-  const newfriendsArray = await getNewFriendsBySearchData(searchData, userId);
-  if (!newfriendsArray) {
-    throw new InvalidRequestError(`Invalid request`);
+  const [, value] = Object.entries(req.query)[0];
+  const newfriends = await searchUsersByNameOrEmail(value, userId);
+  res.json(newfriends || []);
+}));
+
+router.patch('/add/:id', tryCatchWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const friendId = req.params.id;
+  try {
+    await addFriendToUser(friendId, userId);
+    await addFriendToUser(userId, friendId);
+  } catch (error) {
+    throw new DataError(`Friend ${friendId} wasn't added to user ${userId}. Error: ${error}`);
   }
-  res.json(newfriendsArray);
+  res.json({message: `Friend ${friendId} was added to user ${userId}`});
+}));
+
+router.patch('/remove/:id', tryCatchWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const friendId = req.params.id;
+  try {
+    await deleteFriendFromUser(friendId, userId);
+    await deleteFriendFromUser(userId, friendId);
+  } catch (error) {
+    throw new DataError(`Friend ${friendId} wasn't removed from user ${userId}. Error: ${error}`);
+  }
+  res.json({message: `Friend ${friendId} was removed from user ${userId}`});
 }));
 
 router.patch('/search/:id', tryCatchWrapper(async (req, res) => {
@@ -73,7 +94,6 @@ router.get('/requests/received', tryCatchWrapper(async (req, res) => {
 
 router.patch('/requests/received/:friendId', tryCatchWrapper(async (req, res) => {
   const {userId} = req.user;
-  // const friendId = req.params.friendId;
   const {friendId, status} = req.body;
   try {
     await setRequestStatusToUser(friendId, 'received', 'from', userId, status);

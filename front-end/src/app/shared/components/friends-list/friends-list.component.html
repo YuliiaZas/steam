@@ -1,1 +1,9 @@
-<p>friends-list works!</p>
+<app-friend-card 
+  *ngFor="let friend of friends"
+  [friend]="friend"
+  [abilityToAdd]="abilityToAdd"
+  [abilityToRemove]="abilityToRemove"
+  (sendIdToAddFromCard)="getIdToAddFromCard($event)"
+  (sendIdToRemoveFromCard)="getIdToRemoveFromCard($event)"
+  class="games-card-grid">
+</app-friend-card>

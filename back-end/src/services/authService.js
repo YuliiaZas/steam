@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 require('dotenv').config({path: '../../../.env'});
-// const SECRET = process.env.SECRET;
 
 const {User} = require('../models/userModel');
 
@@ -26,7 +25,6 @@ const registration = async (userData) => {
 
 
 const login = async ({email, password}) => {
-console.log("🚀 ~ file: authService.js ~ line 29 ~ login ~ {email, password}", {email, password})
   const user = await User.findOne({email});
 
   if (!user) {
@@ -43,19 +41,15 @@ console.log("🚀 ~ file: authService.js ~ line 29 ~ login ~ {email, password}",
     _id: user._id,
     email: user.email,
   }, process.env.SECRET));
-  
+
   return jwt.sign({
     _id: user._id,
     email: user.email,
   }, process.env.SECRET);
 };
 
-// const resetPassword = async ({email}) => {
-//   // const newPassword = Math.random().toString(36).slice(-10)
-// };
 
 module.exports = {
   registration,
   login,
-  // resetPassword,
 };

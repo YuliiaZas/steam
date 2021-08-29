@@ -1,0 +1,10 @@
+@import 'variables';
+
+main {
+  max-width: 1200px;
+  margin: 64px auto 0px;
+  background-color: white;
+  padding: 20px 60px;
+  box-sizing: border-box;
+  box-shadow: $shadow-bottom;
+}

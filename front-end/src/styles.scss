@@ -25,4 +25,20 @@ h2 {
   font-size: 14px;
   line-height: 16px;
   cursor: pointer;
+  border: none;
+}
+
+.button--main {
+  background: $color-main;
+  color: #FFFFFF;
+}
+
+.button--red {
+  background: $color-red;
+  color: #FFFFFF;
+}
+
+.button--additional {
+  background: #FFFFFF;
+  color: $color-main;
 }

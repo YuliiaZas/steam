@@ -2,23 +2,27 @@
   [formGroup]="searchForm" 
   class="search"
   (submit)="onSubmit()">
-    <label for="username" class="searc__label">Search {{title}}</label>
+  <div class="input-container">
+    <label for="username" class="search__label form__label">Search {{title}}</label>
     <input 
       type="text"
       id="search" 
       placeholder="Search {{title}}"
       formControlName="search"
-      class="search__input">
+      class="search__input form__input">
+  </div>
+  <div class="buttons-container">
     <button 
       type="submit" 
-      class="button search__button">
+      class="button button--main">
       Search
     </button>
     <button 
       *ngIf="!searchIsEmpty"
       type="button" 
-      class="button search__button search__button--cancel"
+      class="button button--additional"
       (click)="cancel()">
       Cancel
     </button>
+  </div>
 </form>

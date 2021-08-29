@@ -11,6 +11,7 @@ import { GamesService } from 'src/app/core/services/games.service';
 export class GamesPageComponent implements OnInit {
   public games!: GameI[];
   public user!: UserI;
+  private initialGames!: GameI[];
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -20,13 +21,17 @@ export class GamesPageComponent implements OnInit {
   ngOnInit(): void {
     this.games = this.activatedRoute.snapshot.data.games;
     this.user = this.activatedRoute.snapshot.data.user;
+    this.initialGames = this.activatedRoute.snapshot.data.games;
   }
 
   public addToLibrary(data: {[key in 'id' | 'button']: string}) {
     this.gamesService.addToLibraryRequest$(data.id)
       .subscribe(result => {
         this.gamesService.getNewGames$()
-          .subscribe((newGames: GameI[]) => this.games = newGames);
+          .subscribe((newGames: GameI[]) => {
+            this.games = newGames;
+            this.initialGames = newGames;
+          });
       });
   }
 
@@ -34,5 +39,9 @@ export class GamesPageComponent implements OnInit {
     console.log(value);
     this.gamesService.searchGameByNameRequest$(value)
       .subscribe((result: GameI[]) => this.games = result);
+  }
+  
+  public stopSearching() {
+    this.games = this.initialGames;
   }
 }

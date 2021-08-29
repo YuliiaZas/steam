@@ -1,7 +1,8 @@
 <h1>Games</h1>
 <app-search
   title="Games"
-  (search)="searchGameByName($event)">
+  (search)="searchGameByName($event)"
+  (stopSearching)="stopSearching()">
 </app-search>
 <app-games-list
   [games]="games"

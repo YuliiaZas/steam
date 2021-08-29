@@ -23,23 +23,17 @@ const getNewGamesByQuery = async (queryType, queryValue, userId) => {
   }
   let searchParam;
   if (queryType === 'name') {
-    console.log('name')
     searchParam = {name: {$regex: `${queryValue}`, $options: 'i'}};
   } else {
-    console.log('else')
     searchParam = {[queryType]: queryValue};
   }
   console.log(searchParam)
   const games = await Game.find({...searchParam, users: {$ne: {_id: userId}}});
-  // if (!games) {
-  //   throw new InvalidRequestError(`Game with id ${_id} is absent`);
-  // }
   return games || [];
 }
 
 const getLibraryGames = async (_id) => {
   const libraryGames = await Game.find({users: _id}, {__v: 0});
-  console.log(libraryGames.map(g=>g.name))
   return libraryGames || [];
 };
 
@@ -47,7 +41,6 @@ const putGameToUser = async (gameId, userId) => {
   User.findOneAndUpdate({_id: userId}, 
     {$push: {games: gameId}}, {new: true},
     (err, doc) => {
-      console.log('_DOC_', doc)
       if (err) {
         throw new InvalidRequestError(`Invalid request: ${err}`);
       }
@@ -58,7 +51,6 @@ const putUserToGame = async (gameId, userId) => {
   Game.findOneAndUpdate({_id: gameId}, 
     {$push: {users: userId}}, {new: true},
     (err, doc) => {
-      console.log('_DOC_', doc)
       if (err) {
         throw new InvalidRequestError(`Invalid request: ${err}`);
       }
