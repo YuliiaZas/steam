@@ -39,7 +39,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
       games: GamesResolver,
-      user: UserResolver,
     }
   }, {
     path: 'library',

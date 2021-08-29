@@ -2,6 +2,7 @@
 
 main {
   max-width: 1200px;
+  min-height: calc(100vh - 125px);
   margin: 64px auto 0px;
   background-color: white;
   padding: 20px 60px;
