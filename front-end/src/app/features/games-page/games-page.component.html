@@ -4,6 +4,8 @@
   (search)="searchGameByName($event)"
   (stopSearching)="stopSearching()">
 </app-search>
+<h2 *ngIf="searchValue">Search Result for "{{searchValue}}"</h2>
+<p *ngIf="!games.length">Sorry, we cannot find such game...</p>
 <app-games-list
   [games]="games"
   cardButtonMain="Add to Library"

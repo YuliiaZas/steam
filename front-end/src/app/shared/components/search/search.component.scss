@@ -1,3 +1,8 @@
+@import 'variables';
+
+:host {
+  font-family: $font-main;
+}
 form {
   display: flex;
   align-items: center;
