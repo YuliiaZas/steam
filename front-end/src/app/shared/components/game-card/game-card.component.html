@@ -1,7 +1,9 @@
 <div class="card">
   <div class="card__main-part">
     <h3 class="card__title">{{game.name}}</h3>
-    <p class="card__price" *ngIf="game.price">{{game.price}} UAH</p>
+    <p class="card__price" *ngIf="!hidePrice">
+      {{game.price | currency:'UAH':'symbol-narrow':'1.0-2':'ua'}}
+    </p>
   </div>
   <div class="card__additional-part">
     <p class="card__content">{{game.description}}</p>

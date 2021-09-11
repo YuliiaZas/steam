@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GameI } from 'src/app/core/models/game';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'ua');
 
 @Component({
   selector: 'app-game-card',
@@ -13,6 +16,8 @@ export class GameCardComponent {
   public cardButtonMain!: string;
   @Input()
   public cardButtonAdditional: string | undefined;
+  @Input()
+  public hidePrice: boolean | undefined;
 
   @Output()
   sendIdFromCard = new EventEmitter<{[key in 'id' | 'button']: string}> ();

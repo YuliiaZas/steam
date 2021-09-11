@@ -7,7 +7,6 @@ import { LoginService } from './login.service';
 @Component({
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
-  // styleUrls: ['../../shared/form-style.scss', './login-page.component.scss'],
 
 })
 export class LoginPageComponent implements OnInit {
