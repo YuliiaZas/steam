@@ -13,6 +13,8 @@ export class GamesListComponent {
   public cardButtonMain!: string;
   @Input()
   public cardButtonAdditional: string | undefined;
+  @Input()
+  public hidePrice: boolean | undefined;
 
   @Output()
   sendDataFromCardsList = new EventEmitter<{[key in 'id' | 'button']: string}> ();

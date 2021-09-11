@@ -3,7 +3,8 @@
   [games]="userGames"
   cardButtonMain="Download"
   cardButtonAdditional="Share"
-  (sendDataFromCardsList)="processAction($event)">
+  (sendDataFromCardsList)="processAction($event)"
+  [hidePrice]="true">
 </app-games-list>
 
 <div [formGroup]="copyGroup" class="display-none">

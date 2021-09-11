@@ -1,15 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserI } from 'src/app/core/models/user';
 import { ProfileService } from './profile.service';
 
 @Component({
-  // selector: 'app-profile-page',
+  selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss'],
-  // styleUrls: ['../../shared/form-style.scss', './profile-page.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePageComponent implements OnInit {
   public user!: UserI;

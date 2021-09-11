@@ -31,7 +31,7 @@ const PUBLIC_PIPES: any[] = [];
     ReactiveFormsModule,
   ],
   exports: [
-    // CommonModule,
+    CommonModule,
     ...PUBLIC_COMPONENTS,
     ...PUBLIC_DIRECTIVES,
     ...PUBLIC_PIPES,
