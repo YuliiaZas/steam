@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LibraryPageComponent } from './library-page.component';
 
 @NgModule({
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild([{
       path: '',
       component: LibraryPageComponent
     }]),
-    SharedModule,
   ],
   declarations: [
     LibraryPageComponent
